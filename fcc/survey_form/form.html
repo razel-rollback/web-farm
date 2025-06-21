@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Servey real</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <h1 id="title">Survey form
+    </h1>
+    <p id="description">answer this for a free iphone 15</p>
+    <form id="survey-form" action="#" method="POST">
+        <label id="name-label" for="name">Name: </label>
+        <input id="name" type="text" placeholder="Enter Name" required>
+        <label id="email-label" for="email">Email: </label>
+        <input id="email" type="email" placeholder="Enter Email" required>
+        <label id="number-label" for="number">Enter your age:</label>
+        <input id="number" type="number" placeholder="enter age" required min="15" max="100" />
+
+        <label>Gender: </label>
+        <select id="dropdown">
+            <option>Male</option>
+            <option>Female</option>
+        </select>
+
+        <div class="inline">
+            <label>your type: </label>
+
+
+            <label> <input type="radio" name="tyoe" value="goon"> goon </label>
+
+            <label> <input type="radio" name="tyoe" value="tralala">tralala </label>
+            <label><input type="checkbox" name="identity" value="gay"> gay</label>
+            <label> <input type="radio" name="tyoe" value="tralala">tralala </label>
+            <label><input type="checkbox" name="identity" value="gay"> gay</label>
+
+        </div>
+
+        <label for="bacon">What is bacon?</label>
+        <textarea id="bacon" name="bacon" placeholder="Type your thoughts..."></textarea>
+
+
+        <input id="submit" type="submit" value="submit" />
+    </form>
+</body>
+
+</html>
