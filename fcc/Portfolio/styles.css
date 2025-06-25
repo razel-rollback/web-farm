@@ -1,0 +1,419 @@
+/*8Build a Personal Portfolio Webpage
+Objective: Build an app that is functionally similar to https://personal-portfolio.freecodecamp.rocks. Do not copy this demo project.
+
+User Stories:
+
+Your portfolio should have a welcome section with an id of welcome-section
+The welcome section should have an h1 element that contains text
+Your portfolio should have a projects section with an id of projects
+The projects section should contain at least one element with a class of project-tile to hold a project
+The projects section should contain at least one link to a project
+Your portfolio should have a navbar with an id of navbar
+The navbar should contain at least one link that you can click on to navigate to different sections of the page
+Your portfolio should have a link with an id of profile-link, which opens your GitHub or freeCodeCamp profile in a new tab
+Your portfolio should have at least one media query
+The height of the welcome section should be equal to the height of the viewport
+The navbar should always be at the top of the viewport
+Fulfill the user stories and pass all the tests below to complete this project. Give it your own personal style. Happy Coding!
+
+Note: Be sure to add <link rel="stylesheet" href="styles.css"> in your HTML to link your stylesheet and apply your CSS
+Run the Tests (Ctrl + Enter)
+Save your Code
+Revert to Saved Code
+Get Help
+Tests
+
+Waiting: 1. Your portfolio should have a "Welcome" section with an id of welcome-section.
+Waiting: 2. Your #welcome-section element should contain an h1 element.
+Waiting: 3. You should not have any empty h1 elements within #welcome-section element.
+Waiting: 4. You should have a "Projects" section with an id of projects.
+Waiting: 5. Your portfolio should contain at least one element with a class of project-tile.
+Waiting: 6. Your #projects element should contain at least one a element.
+Waiting: 7. Your portfolio should have a navbar with an id of navbar.
+Waiting: 8. Your #navbar element should contain at least one a element whose href attribute starts with #.
+Waiting: 9. Your portfolio should have an a element with an id of profile-link.
+Waiting: 10. Your #profile-link element should have a target attribute of _blank.
+Waiting: 11. Your portfolio should use at least one media query.
+Waiting: 12. Your #navbar element should always be at the top of the viewport.*/
+
+/* Universal Box-Sizing for easier layout management */
+/* Universal Box-Sizing for easier layout management */
+html {
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    /* Smooth scrolling for anchor links */
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    /* A clear, readable font */
+    line-height: 1.6;
+    background-color: #f4f7f6;
+    /* A soft, light background */
+    color: #333;
+    margin: 0;
+    /* Remove default body margin */
+    padding: 0;
+    /* Remove default body padding */
+}
+
+/* --- Header Styling (Adjusted) --- */
+header {
+    /* Remove fixed positioning from header */
+    /* position: fixed; */
+    /* REMOVE THIS */
+    /* width: 100%; */
+    /* REMOVE THIS, or let #navbar handle it */
+    padding: 1rem 2rem;
+    /* Keep padding for the overall bar */
+    background-color: #dda2e0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    min-height: 60px;
+    display: flex;
+    /* Keep flex for aligning children (like a potential logo) if header remains */
+    align-items: center;
+}
+
+/* --- Navbar Styling (Apply fixed positioning directly to #navbar) --- */
+#navbar {
+    position: fixed;
+    /* <--- ADD THIS */
+    top: 0;
+    /* <--- ADD THIS */
+    left: 0;
+    /* <--- ADD THIS */
+    width: 100%;
+    /* <--- ADD THIS */
+    background-color: #dda2e0;
+    /* Re-apply background if it's now the main fixed element */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    /* Re-apply shadow */
+    z-index: 1000;
+    /* Ensure it stays on top */
+    min-height: 60px;
+    /* Ensure it has height */
+
+    /* The flex properties that were on nav will now apply directly here */
+    display: flex;
+    align-items: center;
+    /* Align items vertically (like the ul) */
+    justify-content: flex-end;
+    /* Push the ul to the right */
+    padding: 1rem 2rem;
+    /* Apply header padding directly to navbar */
+}
+
+
+#navbar>ul {
+    /* Now targets the ul inside #navbar */
+    list-style: none;
+    display: flex;
+    gap: 2.5rem;
+    margin: 0;
+    padding: 0;
+}
+
+#navbar>ul>li {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+}
+
+#navbar>ul>li:hover {
+    color: #fff;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+/* --- Main Content Padding (to prevent content hiding behind fixed #navbar) --- */
+main {
+    padding-top: 6rem;
+    /* Adjust this value based on your #navbar's actual height + desired gap */
+}
+
+/* --- Remaining Section Styling (as before) --- */
+section {
+    padding: 4rem 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #fff;
+    margin-bottom: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+section:last-child {
+    margin-bottom: 0;
+}
+
+h1,
+h2,
+h3 {
+    color: #4a4a4a;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+h1 {
+    font-size: 3em;
+    padding-top: 2rem;
+}
+
+h2 {
+    font-size: 2.2em;
+    border-bottom: 2px solid #dda2e0;
+    display: inline-block;
+    padding-bottom: 0.5rem;
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+}
+
+h3 {
+    font-size: 1.5em;
+    color: #6a6a6a;
+}
+
+p {
+    font-size: 1.1em;
+    line-height: 1.8;
+    margin-bottom: 1em;
+    text-align: justify;
+}
+
+/* --- Welcome Section Specifics --- */
+#welcome-section {
+    text-align: center;
+    background-color: #f0f0f0;
+    padding: 8rem 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 6rem);
+    margin-bottom: 2rem;
+}
+
+#welcome-section p {
+    max-width: 800px;
+    margin-top: 1.5rem;
+    font-size: 1.2em;
+    font-style: italic;
+    color: #555;
+}
+
+/* --- About Me Section Specifics --- */
+#about-me div {
+    margin-top: 3rem;
+    padding: 1.5rem;
+    background-color: #f9f9f9;
+    border-radius: 6px;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.05);
+}
+
+#about-me div h2 {
+    font-size: 1.8em;
+    margin-bottom: 1rem;
+    border-bottom: 1px dashed #ccc;
+    padding-bottom: 0.3em;
+}
+
+#about-me ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+#about-me ul li {
+    background-color: #e6e6e6;
+    padding: 0.7em 1.2em;
+    border-radius: 20px;
+    font-weight: bold;
+    color: #555;
+    white-space: nowrap;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+#about-me ul li p {
+    margin: 0;
+    font-size: 1em;
+    text-align: center;
+}
+
+/* --- Projects Section Specifics --- */
+#projects>div {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2.5rem;
+}
+
+#projects>div>div {
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#projects>div>div:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.project-title {
+    color: #721c7d;
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+#projects a {
+    display: inline-block;
+    background-color: #721c7d;
+    color: white;
+    padding: 0.7rem 1.5rem;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+#projects a:hover {
+    background-color: #5a1563;
+}
+
+/* --- Contact Section Specifics --- */
+#profile-links {
+    text-align: center;
+}
+
+#profile-links p {
+    margin-bottom: 2rem;
+}
+
+#profile-links div {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+}
+
+#profile-links a {
+    font-size: 3em;
+    color: #721c7d;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+#profile-links a:hover {
+    color: #5a1563;
+    transform: scale(1.1);
+}
+
+/* --- Responsive Adjustments (Media Queries) --- */
+@media (max-width: 768px) {
+    #navbar {
+        /* Target #navbar for responsiveness */
+        padding: 1rem 1rem;
+    }
+
+    #navbar>ul {
+        /* Target ul inside #navbar for responsiveness */
+        gap: 1.5rem;
+    }
+
+    #navbar>ul>li {
+        /* Target li inside #navbar ul for responsiveness */
+        font-size: 1em;
+    }
+
+    h1 {
+        font-size: 2.5em;
+    }
+
+    h2 {
+        font-size: 1.8em;
+    }
+
+    section {
+        padding: 3rem 4%;
+    }
+
+    #welcome-section {
+        padding: 6rem 4%;
+        min-height: calc(100vh - 5rem);
+    }
+
+    #about-me ul {
+        justify-content: flex-start;
+        gap: 1rem;
+    }
+
+    #about-me ul li {
+        font-size: 0.9em;
+        padding: 0.5em 1em;
+    }
+
+    #projects>div {
+        grid-template-columns: 1fr;
+    }
+
+    #profile-links a {
+        font-size: 2.5em;
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    #navbar {
+        /* Target #navbar for responsiveness */
+        flex-direction: column;
+        align-items: center;
+        padding-bottom: 0.5rem;
+    }
+
+    #navbar>ul {
+        /* Target ul inside #navbar for responsiveness */
+        justify-content: center;
+        width: 100%;
+        margin-top: 0.5rem;
+        gap: 1rem;
+    }
+
+    #navbar>ul>li {
+        /* Target li inside #navbar ul for responsiveness */
+        font-size: 0.9em;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
+
+    section {
+        padding: 2rem 3%;
+    }
+
+    #welcome-section {
+        padding: 5rem 3%;
+    }
+
+    #profile-links a {
+        font-size: 2em;
+    }
+}
